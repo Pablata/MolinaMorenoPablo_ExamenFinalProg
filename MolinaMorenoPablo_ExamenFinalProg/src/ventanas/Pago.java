@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 import container.Listas;
+
 import models.Vehiculo;
 
 import javax.swing.JTextField;
@@ -59,9 +60,11 @@ public class Pago {
 
 	
 	private String fecha;
-
+	private String fecha2;
 	
 	//Calculos
+	
+	
 	private float totalPrecioMinuto;
 	private float cambio;
 	private float dineroRecibido;
@@ -186,33 +189,7 @@ public class Pago {
 		framePagos.getContentPane().add(lblCambio);
 
 		importeField = new JTextField();
-		importeField.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				if (!importeField.getText().trim().equals("")) {
-					cambio = 0;
-					dineroRecibido = Float.parseFloat(importeField.getText());
-					cambio = dineroRecibido - totalPrecioMinuto;
-
-					if (dineroRecibido > totalPrecioMinuto) {
-						
-						lblCambio.setText("Recibo: ");
-						
-
-					
-
-					} else {
-					
-
-						lblCambio.setText("[Error]:cantidad insuficiente o formato incorrecto.");
-					}
-				} else {
-
-					lblCambio.setText("[Error]:cantidad insuficiente o formato incorrecto.");
-
-				}
-			}
-		});
+		
 	
 		
 		importeField.addKeyListener(new KeyAdapter() {
@@ -239,7 +216,21 @@ public class Pago {
 						
 						lblCambio.setText("Recibo: ");
 						
-
+						Vehiculo c = new Vehiculo();
+						
+						
+						
+						
+						
+						
+						
+						c.setMatricula(matriculaField.getText());
+						c.setPrecio(totalPrecioMinuto);
+						c.setFechaEntrada(entradaField.getText());
+						c.setFechaSalida(salidaField.getText());
+						
+						Listas.listaVehiculos.add(c);
+						
 					
 
 					} else {
@@ -311,7 +302,7 @@ public class Pago {
 		// El mes me lo coge mal no se porque
 		int numeroMes = mes + 1;
 		anio2 = calendario2.get(Calendar.YEAR);
-		fecha = ("" + dia2 + "-" + numeroMes + "-" + anio2 +" "+hora2 + ":"+minutos2 +":" +segundos2);
+		fecha2 = ("" + dia2 + "-" + numeroMes + "-" + anio2 +" "+hora2 + ":"+minutos2 +":" +segundos2);
 
 		salidaField.setText(fecha);
 	}

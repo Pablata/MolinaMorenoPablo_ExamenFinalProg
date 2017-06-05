@@ -5,16 +5,20 @@ import java.sql.Date;
 public class Vehiculo {
 
 	protected String matricula;
-	protected int fechaEntrada;
-	protected Date fechaSalida;
+	protected String fechaEntrada;
+	protected String fechaSalida;
 	protected float precio;
 
-	public Vehiculo(String matricula, int fechaEntrada, Date fechaSalida, float precio) {
+	public Vehiculo(String matricula, String fechaEntrada, String fechaSalida, float precio) {
 		super();
 		this.matricula = matricula;
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
 		this.precio = precio;
+	}
+
+	public Vehiculo() {
+		
 	}
 
 	public String getMatricula() {
@@ -25,19 +29,19 @@ public class Vehiculo {
 		this.matricula = matricula;
 	}
 
-	public int getFechaEntrada() {
+	public String getFechaEntrada() {
 		return fechaEntrada;
 	}
 
-	public void setFechaEntrada() {
+	public void setFechaEntrada(String fechaEntrada) {
 		this.fechaEntrada = fechaEntrada;
 	}
 
-	public Date getFechaSalida() {
+	public String getFechaSalida() {
 		return fechaSalida;
 	}
 
-	public void setFechaSalida(Date fechaSalida) {
+	public void setFechaSalida(String fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
 
