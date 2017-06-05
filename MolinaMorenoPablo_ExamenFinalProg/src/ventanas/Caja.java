@@ -10,7 +10,7 @@ import javax.swing.JButton;
 
 public class Caja {
 
-	private JFrame frameCaja;
+	protected JFrame frameCaja;
 
 	/**
 	 * Launch the application.
@@ -57,8 +57,17 @@ public class Caja {
 		lblDia.setBounds(151, 111, 108, 19);
 		frameCaja.getContentPane().add(lblDia);
 		
-		JButton btnVolver = new JButton("Volver a Inicio");
-		btnVolver.setBounds(151, 11, 99, 65);
-		frameCaja.getContentPane().add(btnVolver);
+		JButton btnCaja = new JButton("Caja");
+		btnCaja.setBounds(317, 11, 91, 66);
+		frameCaja.getContentPane().add(btnCaja);
+		
+		JButton btnPagos = new JButton("Pago  y Salida \r\nde Vehiculo");
+		btnPagos.setHorizontalAlignment(SwingConstants.LEFT);
+		btnPagos.setBounds(135, 11, 157, 66);
+		frameCaja.getContentPane().add(btnPagos);
+		
+		JButton btnEntrada = new JButton("Entrada");
+		btnEntrada.setBounds(24, 11, 91, 66);
+		frameCaja.getContentPane().add(btnEntrada);
 	}
 }
