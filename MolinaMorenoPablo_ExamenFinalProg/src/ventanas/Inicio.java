@@ -26,6 +26,9 @@ public class Inicio {
 	private JButton btnPago;
 	private JButton btnCaja;
 	private JButton btnRegistrar;
+	private String entrada;
+
+	
 
 	/**
 	 * Launch the application.
@@ -59,11 +62,12 @@ public class Inicio {
 		frameInicio.setBounds(100, 100, 450, 300);
 		frameInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameInicio.getContentPane().setLayout(null);
-		
+
 		btnEntrada = new JButton("Entrada");
 		btnEntrada.setBounds(20, 33, 91, 66);
+		btnEntrada.setEnabled(false);
 		frameInicio.getContentPane().add(btnEntrada);
-		
+
 		matriculaField = new JTextField();
 		matriculaField.addFocusListener(new FocusAdapter() {
 			@Override
@@ -75,20 +79,38 @@ public class Inicio {
 		matriculaField.setBounds(131, 123, 157, 53);
 		frameInicio.getContentPane().add(matriculaField);
 		matriculaField.setColumns(10);
-		
+
 		btnPago = new JButton("Pago  y Salida \r\nde Vehiculo");
+		btnPago.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				Pago ventanaPago = new Pago();
+				ventanaPago.framePagos.setVisible(true);
+				frameInicio.dispose();
+
+			}
+		});
 		btnPago.setHorizontalAlignment(SwingConstants.LEFT);
 		btnPago.setBounds(131, 33, 157, 66);
 		frameInicio.getContentPane().add(btnPago);
-		
+
 		btnCaja = new JButton("Caja");
+		btnCaja.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Caja ventanaCaja = new Caja();
+				ventanaCaja.frameCaja.setVisible(true);
+				frameInicio.dispose();
+				
+			}
+		});
+		
 		btnCaja.setBounds(313, 33, 91, 66);
 		frameInicio.getContentPane().add(btnCaja);
-		
+
 		btnRegistrar = new JButton("Registrar");
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String entrada = matriculaField.getText().replaceAll(" ", "").toUpperCase();
+				entrada = matriculaField.getText().replaceAll(" ", "").toUpperCase();
 				boolean esCorrecto = false;
 
 				// 4 numeros, 3 letras al final
@@ -100,20 +122,14 @@ public class Inicio {
 				Matcher matricula4numeros = cuatroNumerosCentro.matcher(entrada);
 
 				if (matricula3letras.matches() || matricula4numeros.matches()) {
-					
 
 					for (Vehiculo c : Listas.listaVehiculos) {
 
 						if (!c.getMatricula().contains(entrada)) {
+
 							esCorrecto = true;
-							
-
-							Pago ventanaPago = new Pago();
-
-							ventanaPago.framePagos.setVisible(true);
-
-						
-							frameInicio.dispose();
+							JOptionPane.showMessageDialog(null,
+									"La matricula " + entrada + " esta guardada, cree una nueva");
 
 						}
 					}
@@ -122,10 +138,22 @@ public class Inicio {
 							JOptionPane.ERROR_MESSAGE);
 
 				}
-				if (esCorrecto) {
+				if (!esCorrecto) {
 
-					JOptionPane.showMessageDialog(null, "La matricula " + entrada + " esta guardada");
+					JOptionPane.showMessageDialog(null, "La matricula " + entrada + " no esta guardada");
 
+					
+					
+					
+					
+					
+					
+					Pago ventanaPago = new Pago();
+					ventanaPago.matriculaField.setText(entrada);
+					
+					ventanaPago.framePagos.setVisible(true);
+
+					frameInicio.dispose();
 
 				}
 			}
@@ -133,7 +161,7 @@ public class Inicio {
 		btnRegistrar.setBounds(131, 196, 157, 42);
 		frameInicio.getContentPane().add(btnRegistrar);
 	}
-	
+
 	public void run() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -146,7 +174,5 @@ public class Inicio {
 			}
 		});
 	}
-	
 
-	
 }

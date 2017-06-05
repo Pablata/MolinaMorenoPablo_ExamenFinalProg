@@ -11,11 +11,11 @@ public class main {
 
 		
 		
-		Vehiculo c1 = new Vehiculo("1234ABC", null, null, 20);
+		Vehiculo c1 = new Vehiculo("1234ABC", 0, null, 20);
 
-		Vehiculo c2 = new Vehiculo("1234ABD", null, null, 30);
+		Vehiculo c2 = new Vehiculo("1234ABD", 0, null, 30);
 
-		Vehiculo c3 = new Vehiculo("1234ABE", null, null, 40);
+		Vehiculo c3 = new Vehiculo("1234ABE", 0, null, 40);
 
 		
 		Listas.listaVehiculos.add(c1);
